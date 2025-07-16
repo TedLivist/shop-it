@@ -34,16 +34,46 @@ gem "bootsnap", require: false
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin Ajax possible
 # gem "rack-cors"
+gem "devise", "~> 4.9"
+
+gem 'jsonapi-serializer'
+
+gem 'active_model_serializers'
+gem 'responders'
+# Implement active interaction
+gem 'active_interaction', '~> 4.1'
+gem 'rack-cors', '~> 1.1', '>= 1.1.1'
+
+gem 'aasm', '~> 5.2'
+gem 'faker'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ]
+  # A RuboCop extension focused on enforcing Rails best practices and coding conventions.
+  gem 'rubocop-rails'
+  # A Ruby gem to load environment variables from `.env`.
+  gem 'dotenv-rails'
+  # Annotate Rails classes with schema and routes info
+  gem 'annotate'
+  # RSpec for Rails 5+
+  gem 'rspec-rails', '~> 5.0.0'
+  # A library for setting up Ruby objects as test data.
+  gem 'factory_bot_rails'
 end
 
 group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
+  # Preview mail in the browser instead of sending.
+  gem 'letter_opener'
 
   gem "error_highlight", ">= 0.4.0", platforms: [:ruby]
 end
+
+group :test do
+  # Strategies for cleaning databases in Ruby. Can be used to ensure a clean state for testing.
+  gem 'database_cleaner-active_record'
+end
+
 
