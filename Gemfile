@@ -34,6 +34,7 @@ gem "bootsnap", require: false
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin Ajax possible
 # gem "rack-cors"
+gem "devise", "~> 4.9"
 
 gem 'jsonapi-serializer'
 
@@ -74,4 +75,5 @@ group :test do
   # Strategies for cleaning databases in Ruby. Can be used to ensure a clean state for testing.
   gem 'database_cleaner-active_record'
 end
+
 
