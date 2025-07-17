@@ -10,9 +10,10 @@
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
-#  role                   :integer
+#  status                 :integer
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
+#  user_role_id           :integer
 #
 # Indexes
 #
@@ -24,4 +25,16 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+  belongs_to :user_role
+
+  validates :first_name, :last_name, length: { minimum: 2, maximum: 24 }
+
+  delegate :super_admin?, to: :user_role
+  delegate :brand, to: :user_role
+  delegate :customer?, to: :user_role
+
+  def full_name
+    [first_name, middle_name, last_name].compact_blank.join(' ')
+  end
 end
