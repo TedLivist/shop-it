@@ -18,7 +18,6 @@ module Api
         # puts result
         respond_with result
       end
-
     end
   end
 end

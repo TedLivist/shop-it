@@ -5,7 +5,7 @@ module Auths
 
       def to_model
         user.reload
-      end      
+      end
     end
   end
 end

@@ -12,7 +12,7 @@ RSpec.describe Api::User::BrandAuthController, type: :request do
             first_name: Faker::Name.first_name,
             last_name: Faker::Name.last_name,
             password: '12345678',
-            password_confirmation: '12345678',
+            password_confirmation: '12345678'
           }
         }
       end
@@ -24,7 +24,7 @@ RSpec.describe Api::User::BrandAuthController, type: :request do
       it 'Sign user up succesfully' do
         subject
         expect(response).to have_http_status(:success)
-        expect(json['message']).to eq("account created")
+        expect(json['message']).to eq('account created')
       end
 
       it 'creates the user' do

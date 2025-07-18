@@ -1,12 +1,11 @@
 module Auths
   module Brand
     class SignUp < Base
-
       string :email, :first_name, :last_name, :password, :password_confirmation
 
       def execute
         User.transaction do
-          @user_role = UserRole.find_by(name: "brand")
+          @user_role = UserRole.find_by(name: 'brand')
           @user = User.new(email:, first_name:, last_name:, password:, password_confirmation:, user_role: @user_role)
 
           if @user.save
@@ -21,7 +20,7 @@ module Auths
       end
 
       def to_model
-        { message: "account created" }
+        { message: 'account created' }
       end
     end
   end

@@ -1,0 +1,78 @@
+plugins: rubocop-rails
+
+AllCops:
+  SuggestExtensions: false
+  NewCops: enable
+  Exclude:
+    - "db/**/*"
+    - "bin/*" 
+    - "config/**/*"
+    - "Guardfile"
+    - "Rakefile"
+    - "node_modules/**/*"
+    - "test/**/*"
+    - "Gemfile"
+    - "spec/spec_helper.rb"
+    - "lib/**/*"
+    - "spec/rails_helper.rb"
+
+Style/Documentation:
+  Enabled: false
+Style/FrozenStringLiteralComment:
+  Enabled: false
+Style/AndOr:
+  Enabled: true
+Style/GuardClause:
+  Enabled: false
+Style/ClassAndModuleChildren:
+  Enabled: false
+Style/SymbolArray:
+  Enabled: false
+
+
+Layout/EndOfLine:
+  Enabled: false
+Layout/IndentationStyle:
+  Enabled: true
+  IndentationWidth: 2
+Layout/SpaceBeforeBlockBraces:
+  EnforcedStyle: space
+Layout/SpaceInsideBlockBraces:
+  EnforcedStyle: space
+Layout/SpaceInsideHashLiteralBraces:
+  EnforcedStyle: space
+Layout/LineLength:
+  Max: 140
+
+
+Lint/RequireParentheses:
+  Enabled: true
+Lint/DuplicateBranch:
+  Enabled: false
+
+Metrics/AbcSize:
+  Enabled: false
+Metrics/MethodLength:
+  Max: 18
+Metrics/BlockLength:
+  Enabled: false
+Metrics/CyclomaticComplexity:
+  Max: 15
+Metrics/PerceivedComplexity:
+  Max: 15
+
+Rails/DynamicFindBy:
+  Enabled: false
+Rails/HasManyOrHasOneDependent:
+  Enabled: false
+Rails/UniqueValidationWithoutIndex:
+  Enabled: false
+Rails/ActionOrder:
+  Enabled: false
+Rails/SkipsModelValidations:
+  Enabled: false
+Rails/Blank:
+  Enabled: false
+
+Naming/VariableNumber:
+  Enabled: false
