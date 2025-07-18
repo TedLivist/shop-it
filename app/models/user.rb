@@ -10,7 +10,7 @@
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
-#  status                 :integer
+#  status                 :string
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  user_role_id           :integer
@@ -21,6 +21,8 @@
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
 class User < ApplicationRecord
+  include AASM
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -36,5 +38,23 @@ class User < ApplicationRecord
 
   def full_name
     [first_name, middle_name, last_name].compact_blank.join(' ')
+  end
+
+  aasm column: :status do
+    state :pending, initial: true
+    state :approved
+    state :declined
+
+    event :approve do
+      transitions from: [:pending, :declined], to: :approved
+    end
+
+    event :decline do
+      transitions from: :pending, to: :declined
+    end
+
+    event :pend do
+      transitions from: :declined, to: :pending
+    end
   end
 end
