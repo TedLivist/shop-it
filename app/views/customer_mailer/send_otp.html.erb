@@ -1,0 +1,17 @@
+<div class="otp-div">
+  Hi <%= @first_name %>,
+
+  <p>Here is your Verification OTP. This code will expire in 5 minutes</p>
+
+  <p class="text-center"><span class="text-span"><%= @otp %></span></p>
+
+  <p class='warning'>
+    <sub>
+      <em>
+      DISCLAIMER: This One-Time Password (OTP) is for your exclusive use and must be kept confidential.
+      Please refrain from sharing or disclosing this OTP to anyone.
+      Be cautious of phishing attempts and fraudulent requests.
+      </em>
+    </sub>
+  </p>
+</div>

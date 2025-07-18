@@ -1,5 +1,5 @@
 class ApplicationInteraction < ActiveInteraction::Base
-  # attr_reader :merchant, :user
+  attr_reader :user
 
   include ActionView::Helpers::TranslationHelper
   set_callback :execute, :after, :save_object_errors, if: :object_invalid?
@@ -26,6 +26,25 @@ class ApplicationInteraction < ActiveInteraction::Base
 
   #   true
   # end
+
+  def generate_otp
+    6.times.map { rand(9) }.join
+  end
+
+  def otp_valid?(otp, user)
+    return false if otp.nil?
+
+    expiration_time = 5 # 5 minutes
+
+    # Time difference in seconds
+    # Convert to minutes
+    # Round up to nearest integer
+    elapsed_time = ((Time.now.utc - user.generated_at) / 1.minute).round
+
+    # otp is valid if elapsed time (minutes) is less than expiration (minutes) and
+    # the provided otp is equal to the user's otp value
+    (elapsed_time < expiration_time) && (otp == user.otp)
+  end
 
   private
 

@@ -37,3 +37,8 @@ en:
     mailer:
       send_pending_approval:
         subject: Account pending approval
+  
+  customer:
+    mailer:
+      send_otp:
+        subject: OTP verification code
