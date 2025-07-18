@@ -33,7 +33,7 @@ class User < ApplicationRecord
   validates :first_name, :last_name, length: { minimum: 2, maximum: 24 }
 
   delegate :super_admin?, to: :user_role
-  delegate :brand, to: :user_role
+  delegate :brand?, to: :user_role
   delegate :customer?, to: :user_role
 
   def full_name
