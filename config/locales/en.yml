@@ -31,3 +31,9 @@ en:
   api:
     errors:
       unauthorized: "Unauthorized"
+      not_found: Not Found
+
+  brand:
+    mailer:
+      send_pending_approval:
+        subject: Account pending approval

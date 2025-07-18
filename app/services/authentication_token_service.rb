@@ -20,11 +20,11 @@ class AuthenticationTokenService
     false
   end
 
-  def self.valid_payload(payload)
+  def self.valid_payload?(payload)
     !expired(payload)
   end
 
-  def self.expired(payload)
+  def self.expired?(payload)
     Time.zone.at(payload['exp']) < Time.now.utc
   end
 

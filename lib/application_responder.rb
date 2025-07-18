@@ -6,18 +6,18 @@ class ApplicationResponder < ActionController::Responder
   # of the resource path (show action) for POST/PUT/DELETE requests.
   # include Responders::CollectionResponder
 
-  # def api_behavior
-  #   raise MissingRenderer, format unless has_renderer?
+  def api_behavior
+    raise MissingRenderer, format unless has_renderer?
 
-  #   answer = resource.try(:to_model) || resource
-  #   if get?
-  #     display answer
-  #   elsif post?
-  #     display answer, status: :created
-  #   else
-  #     display answer
-  #   end
-  # end
+    answer = resource.try(:to_model) || resource
+    if get?
+      display answer
+    elsif post?
+      display answer, status: :created
+    else
+      display answer
+    end
+  end
 
   # Configure default status codes for responding to errors and redirects.
   self.error_status = :unprocessable_entity

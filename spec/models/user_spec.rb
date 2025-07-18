@@ -10,7 +10,7 @@
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
-#  status                 :integer
+#  status                 :string
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  user_role_id           :integer

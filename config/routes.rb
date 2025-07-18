@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   # root "posts#index"
   namespace :api, defaults: { format: :json } do
     namespace :user do
-      post '/sign_up', to: 'auth#sign_up'
+        post '/brand_sign_up', to: 'brand_auth#sign_up'
     end
   end
 end
