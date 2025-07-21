@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Api::User::AuthController, type: :request do
-  describe '/api/user/brand_sign_up' do
+  describe '/api/user/sign_up' do
     let!(:user_role) { create(:user_role, name: :brand) }
     let!(:user_role2) { create(:user_role, name: :customer) }
 
@@ -42,6 +42,17 @@ RSpec.describe Api::User::AuthController, type: :request do
         user = User.first
         expect(user.brand?).to be(true)
       end
+
+      it 'sends pending approval mail' do
+        subject
+        user = User.first
+
+        mails_delivered = ActionMailer::Base.deliveries
+        mail = mails_delivered.first
+        expect(mails_delivered.count).to eq(1)
+        expect(mail.subject).to eq(I18n.t('brand.mailer.send_pending_approval.subject'))
+        expect(mail.to).to eq([user.email])
+      end
     end
 
     context 'When valid customer parameters are provided' do
@@ -72,21 +83,27 @@ RSpec.describe Api::User::AuthController, type: :request do
         expect { subject }.to change(User, :count).by(1)
       end
 
-      it 'creates a brand record' do
+      it 'creates a customer record' do
         expect { subject }.to change(Customer, :count).by(1)
       end
 
-      it 'create user as a brand' do
+      it 'create user as a customer' do
         subject
         user = User.first
         expect(user.customer?).to be(true)
       end
 
-      it 'sets user otp' do
+      it 'sets and sends user otp to mail' do
         subject
         user = User.first
         expect(user.otp).to_not be(nil)
         expect(user.generated_at).to_not be(nil)
+
+        mails_delivered = ActionMailer::Base.deliveries
+        mail = mails_delivered.first
+        expect(mails_delivered.count).to eq(1)
+        expect(mail.subject).to eq(I18n.t('user.mailer.send_otp.subject'))
+        expect(mail.to).to eq([user.email])
       end
     end
 

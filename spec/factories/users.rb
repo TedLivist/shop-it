@@ -24,8 +24,30 @@
 #
 FactoryBot.define do
   factory :user do
-    first_name { 'MyString' }
-    last_name { 'MyString' }
-    role { 1 }
+    email { Faker::Internet.email }
+    first_name { Faker::Name.first_name }
+    last_name { Faker::Name.last_name }
+    password { '12345678' }
+    password_confirmation { '12345678' }
+    status { 'pending' }
+    user_role
+
+    trait :with_role do
+      association :user_role, factory: :user_role
+    end
+
+    trait :customer do
+      with_role
+      after(:create) do |user|
+        create(:customer, user: user)
+      end
+    end
+
+    trait :brand do
+      association :user_role, factory: :user_role, name: 'brand'
+      after(:create) do |user|
+        create(:brand, user: user)
+      end
+    end
   end
 end

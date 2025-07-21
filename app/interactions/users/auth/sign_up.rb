@@ -22,7 +22,7 @@ module Users
 
             save_or_rollback(@user)
 
-            CustomerMailer.send_otp(user.email, user.first_name, user.otp).deliver_now
+            UserMailer.send_otp(user.otp, user.email, user.first_name).deliver_now
             ::Customer.create(user: @user) # create associated customer record
           else
             errors.merge!(@user.errors)

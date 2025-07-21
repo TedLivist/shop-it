@@ -18,6 +18,27 @@ module Api
         result = Users::Auth::SignUp.run(payload)
         respond_with result
       end
+
+      api :POST, '/api/user/verify_otp', 'Verify OTP'
+      param :user, Hash do
+        param :otp, String, 'OTP', required: true
+        param :email, String, 'User email', required: true
+      end
+
+      def verify_otp
+        payload = params.require(:user).permit(:otp, :email)
+        result = Users::Auth::VerifyOtp.run(payload)
+        respond_with result, serializer: Api::User::AuthSerializer
+      end
+
+      api :POST, '/api/user/send_otp', 'Send OTP'
+      param :email, String, 'User email', required: true
+
+      def send_otp
+        payload = params.permit(:email)
+        result = Users::Auth::SendOtp.run(payload)
+        respond_with result
+      end
     end
   end
 end
