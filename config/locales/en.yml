@@ -32,8 +32,18 @@ en:
     errors:
       unauthorized: "Unauthorized"
       not_found: Not Found
+      param_is_required: "%{attribute} is required"
+
+  user:
+    mailer:
+      send_otp:
+        subject: OTP verification code
 
   brand:
     mailer:
       send_pending_approval:
         subject: Account pending approval
+  
+  customer:
+    mailer:
+      

@@ -6,7 +6,9 @@
 #  email                  :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
 #  first_name             :string
+#  generated_at           :datetime
 #  last_name              :string
+#  otp                    :string
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
@@ -29,6 +31,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   belongs_to :user_role
+  has_one :customer
+  has_one :brand
 
   validates :first_name, :last_name, length: { minimum: 2, maximum: 24 }
 
@@ -37,7 +41,7 @@ class User < ApplicationRecord
   delegate :customer?, to: :user_role
 
   def full_name
-    [first_name, middle_name, last_name].compact_blank.join(' ')
+    [first_name, last_name].compact_blank.join(' ')
   end
 
   aasm column: :status do
