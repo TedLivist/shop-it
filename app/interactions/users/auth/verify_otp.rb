@@ -22,9 +22,7 @@ module Users
             generated_at: nil
           )
 
-          if user.customer? && user.may_approve?
-            user.approve!
-          end
+          user.approve! if user.customer? && user.may_approve?
         end
       end
     end
