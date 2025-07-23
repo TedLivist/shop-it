@@ -1,0 +1,8 @@
+en:
+  active_interaction:
+    errors:
+      models:
+        users/auth/sign_in:
+            attributes:
+              user:
+                inactive: "Inactive %{attribute}. Verify OTP or contact admin for account activation"

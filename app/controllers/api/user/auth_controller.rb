@@ -39,6 +39,18 @@ module Api
         result = Users::Auth::SendOtp.run(payload)
         respond_with result
       end
+
+      api :POST, '/api/user/sign_in', 'Sign in a user'
+      param :user, Hash do
+        param :email, String, 'User email', required: true
+        param :password, String, 'User password', required: true
+      end
+
+      def sign_in
+        payload = params.fetch(:user, {})
+        result = ::Users::Auth::SignIn.run(payload)
+        respond_with result, serializer: Api::User::AuthSerializer
+      end
     end
   end
 end

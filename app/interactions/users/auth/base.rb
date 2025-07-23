@@ -14,6 +14,28 @@ module Users
           throw(:abort)
         end
       end
+
+      def validate_user
+        @user = User.find_by(email:)
+        if @user.nil?
+          errors.add(:email, :invalid)
+          throw(:abort)
+        end
+      end
+
+      def validate_password
+        unless @user.valid_password?(password)
+          errors.add(:password, :invalid)
+          throw(:abort)
+        end
+      end
+
+      def validate_active_user
+        if @user.pending? || @user.inactive?
+          errors.add(:user, :inactive)
+          throw(:abort)
+        end
+      end
     end
   end
 end
