@@ -46,19 +46,19 @@ class User < ApplicationRecord
 
   aasm column: :status do
     state :pending, initial: true
-    state :approved
-    state :declined
+    state :active
+    state :inactive
 
-    event :approve do
-      transitions from: [:pending, :declined], to: :approved
+    event :activate do
+      transitions from: [:pending, :inactive], to: :active
     end
 
-    event :decline do
-      transitions from: :pending, to: :declined
+    event :deactivate do
+      transitions from: :pending, to: :inactive
     end
 
-    event :pend do
-      transitions from: :declined, to: :pending
-    end
+    # event :pend do
+    #   transitions from: :declined, to: :pending
+    # end
   end
 end
