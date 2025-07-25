@@ -16,5 +16,9 @@ Rails.application.routes.draw do
         post '/send_otp', to: 'auth#send_otp'
         post '/sign_in', to: 'auth#sign_in'
     end
+
+    namespace :brand do
+      resources :products, only: [:create]
+    end
   end
 end
