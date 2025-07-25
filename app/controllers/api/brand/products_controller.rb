@@ -3,8 +3,8 @@ module Api
     class ProductsController < ApiController
 
       def create
-        products = Product.all
-        p products
+        @products = Product.all
+        authorize @products, policy_class: Brand::ProductPolicy
       end
     end
   end

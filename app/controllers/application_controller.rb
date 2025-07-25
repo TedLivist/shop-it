@@ -3,7 +3,7 @@ require 'application_responder'
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :null_session
   before_action :authenticate_user!
-
+  
   def authenticate_user!
     return unauthorized! if !payload || !AuthenticationTokenService.valid_payload?(payload.first)
 
@@ -15,6 +15,8 @@ class ApplicationController < ActionController::Base
     @current_user = User.find_by(id: payload[0]['user_id'])
   end
 
+  
+  
   private
 
   def payload
