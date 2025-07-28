@@ -21,7 +21,7 @@ class AuthenticationTokenService
   end
 
   def self.valid_payload?(payload)
-    !expired(payload)
+    !expired?(payload)
   end
 
   def self.expired?(payload)

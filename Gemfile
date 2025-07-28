@@ -47,11 +47,16 @@ gem 'rack-cors', '~> 1.1', '>= 1.1.1'
 gem 'aasm', '~> 5.2'
 gem 'faker'
 
+# Cloudinary for managing images and media files
+gem "cloudinary"
+
 # A pure Ruby implementation of the RFC 7519 OAuth JSON Web Token standard.
 gem 'jwt'
 
 # Ruby on Rails API documentation tool
 gem 'apipie-rails'
+
+gem "pundit"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

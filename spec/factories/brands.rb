@@ -19,8 +19,8 @@
 #
 FactoryBot.define do
   factory :brand do
-    name { 'MyString' }
-    description { 'MyText' }
-    user { nil }
+    name { Faker::Company.name }
+    description { "#{Faker::Company.catch_phrase}; #{Faker::Company.bs}" }
+    user
   end
 end

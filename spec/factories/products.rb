@@ -12,10 +12,12 @@
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  brand_id    :bigint           not null
+#  category_id :integer
 #
 # Indexes
 #
-#  index_products_on_brand_id  (brand_id)
+#  index_products_on_brand_id     (brand_id)
+#  index_products_on_category_id  (category_id)
 #
 # Foreign Keys
 #
@@ -23,12 +25,13 @@
 #
 FactoryBot.define do
   factory :product do
-    name { 'MyText' }
-    description { 'MyText' }
-    price { '9.99' }
-    stock { 1 }
-    status { 1 }
-    image_url { 'MyString' }
-    brand { nil }
+    name { Faker::Commerce.product_name }
+    description { Faker::Lorem.sentence }
+    price { Faker::Commerce.price }
+    stock { Faker::Number.between(from: 1, to: 10) }
+    status { Product.statuses.keys.sample }
+    image_url { Faker::Internet.url }
+    brand
+    category
   end
 end

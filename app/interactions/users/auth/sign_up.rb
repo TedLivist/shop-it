@@ -33,15 +33,6 @@ module Users
       def to_model
         { message: 'account created' }
       end
-
-      private
-
-      def save_or_rollback(record)
-        unless record.save
-          errors.merge!(record.errors)
-          raise ActiveRecord::Rollback
-        end
-      end
     end
   end
 end

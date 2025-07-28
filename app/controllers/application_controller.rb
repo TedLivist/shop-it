@@ -1,14 +1,11 @@
 require 'application_responder'
 
 class ApplicationController < ActionController::Base
-  self.responder = ApplicationResponder
-  respond_to :html
-
   protect_from_forgery with: :null_session
   before_action :authenticate_user!
 
   def authenticate_user!
-    return unauthorized! if !payload || !AuthenticationTokenService.valid_payload(payload.first)
+    return unauthorized! if !payload || !AuthenticationTokenService.valid_payload?(payload.first)
 
     current_user!
     unauthorized! unless @current_user
