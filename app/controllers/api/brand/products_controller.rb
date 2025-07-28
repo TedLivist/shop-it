@@ -1,10 +1,23 @@
 module Api
   module Brand
     class ProductsController < ApiController
+      api :POST, '/api/brand/producsts', 'Create new product'
+      header :Authorization, 'Auth token', required: true
+      param :product, Hash do
+        param :name, String, 'Name of product', required: true
+        param :description, String, 'Description of product', required: true
+        param :price, Float, 'Price of product in naira', required: true
+        param :stock, Integer, 'Stock of available products', required: false
+        param :status, Product.statuses.keys, 'Product status', required: true
+        param :image, File, 'Image of product', required: true
+        param :category_id, Integer, 'Category ID', required: true
+      end
 
       def create
-        @products = Product.all
-        authorize @products, policy_class: Brand::ProductPolicy
+        authorize @current_user, policy_class: Brand::ProductPolicy
+        payload = params.fetch(:product, {}).merge(brand_id: @current_user.brand.id)
+        result = Products::Create.run(payload)
+        respond_with result, serializer: Api::ProductSerializer
       end
     end
   end

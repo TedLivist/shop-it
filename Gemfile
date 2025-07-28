@@ -47,6 +47,9 @@ gem 'rack-cors', '~> 1.1', '>= 1.1.1'
 gem 'aasm', '~> 5.2'
 gem 'faker'
 
+# Cloudinary for managing images and media files
+gem "cloudinary"
+
 # A pure Ruby implementation of the RFC 7519 OAuth JSON Web Token standard.
 gem 'jwt'
 

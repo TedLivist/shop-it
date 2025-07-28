@@ -46,6 +46,13 @@ class ApplicationInteraction < ActiveInteraction::Base
     (elapsed_time < expiration_time) && (otp == user.otp)
   end
 
+  def save_or_rollback(record)
+    unless record.save
+      errors.merge!(record.errors)
+      raise ActiveRecord::Rollback
+    end
+  end
+
   private
 
   def object_invalid?

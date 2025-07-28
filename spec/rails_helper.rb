@@ -65,4 +65,9 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+
+  # Cloudinary configuration for spec testing 
+  config.before(:each) do
+    allow(Cloudinary::Uploader).to receive(:upload).and_return({ 'url' => 'http://example.com/fake_image.jpg' })
+  end
 end
