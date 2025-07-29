@@ -9,6 +9,10 @@ module Api
         user.brand? && record_related?
       end
 
+      def destroy?
+        user.brand? && record_related?
+      end
+
       private
 
       def record_related?
