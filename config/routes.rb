@@ -20,5 +20,7 @@ Rails.application.routes.draw do
     namespace :brand do
       resources :products, only: [:create, :update, :destroy]
     end
+
+    resources :products, only: [:index]
   end
 end
