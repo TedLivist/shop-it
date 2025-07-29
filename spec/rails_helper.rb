@@ -68,6 +68,6 @@ RSpec.configure do |config|
 
   # Cloudinary configuration for spec testing 
   config.before(:each) do
-    allow(Cloudinary::Uploader).to receive(:upload).and_return({ 'url' => 'http://example.com/fake_image.jpg' })
+    allow(Cloudinary::Uploader).to receive(:upload).and_return({ 'url' => Faker::Internet.url })
   end
 end

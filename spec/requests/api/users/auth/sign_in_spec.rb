@@ -26,7 +26,7 @@ RSpec.describe Api::User::AuthController, type: :request do
     end
 
     context 'When user status has not be activated' do
-      let!(:user) { create(:user, password: '12345e45', password_confirmation: '12345e45') }
+      let!(:user) { create(:user, password: '12345e45', password_confirmation: '12345e45', status: 'pending') }
       let!(:params) do
         {
           user: {
