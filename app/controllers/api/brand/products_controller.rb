@@ -22,6 +22,7 @@ module Api
 
       api :POST, '/api/brand/products/:id', 'Update a product'
       header :Authorization, 'Auth token', required: true
+      param :id, Integer, 'ID of product', required: true
       param :product, Hash do
         param :name, String, 'Name of product', required: false
         param :description, String, 'Description of product', required: false
@@ -32,11 +33,22 @@ module Api
       end
 
       def update
-        product = Product.find_by(id: params[:id])
+        product = Product.find(params[:id])
         authorize product, policy_class: Brand::ProductPolicy
         payload = params.fetch(:product, {}).merge(product:)
         result = Products::Update.run(payload)
         respond_with result, serializer: Api::ProductSerializer
+      end
+
+      api :DELETE, '/api/brand/products/:id', 'Delete a product'
+      header :Authorization, 'Auth token', required: true
+      param :id, Integer, 'ID of product', required: true
+
+      def destroy
+        product = Product.find(params[:id])
+        authorize product, policy_class: Brand::ProductPolicy
+        product.destroy!
+        render json: { product: 'deleted' }
       end
     end
   end
