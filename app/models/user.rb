@@ -54,7 +54,7 @@ class User < ApplicationRecord
     end
 
     event :deactivate do
-      transitions from: :pending, to: :inactive
+      transitions from: [:pending, :active], to: :inactive
     end
 
     # event :pend do

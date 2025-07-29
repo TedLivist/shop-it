@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Api::Brand::ProductsController, type: :request do
-  describe 'PUT #update' do
+  describe 'POST #create' do
     let!(:user) { create(:user) }
     let!(:customer) { create(:customer, user:) }
     let!(:category) { create(:category) }

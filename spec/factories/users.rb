@@ -29,7 +29,7 @@ FactoryBot.define do
     last_name { Faker::Name.last_name }
     password { '12345678' }
     password_confirmation { '12345678' }
-    status { 'pending' }
+    status { 'active' }
     user_role
 
     trait :with_role do

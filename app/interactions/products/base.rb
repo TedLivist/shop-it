@@ -19,7 +19,14 @@ module Products
     def product_params
       data = inputs.slice(:name, :description, :status, :price, :stock, :brand_id, :category_id)
 
-      data[:image_url] = attach_image(inputs[:image])
+      data[:name] = product.name unless inputs[:name].present?
+      data[:description] = product.description unless inputs[:description].present?
+      data[:status] = product.status unless inputs[:status].present?
+      data[:price] = product.price unless inputs[:price].present?
+      data[:stock] = product.stock unless inputs[:stock].present?
+
+      data[:image_url] = attach_image(inputs[:image]) if inputs[:image].present?
+
       data
     end
 

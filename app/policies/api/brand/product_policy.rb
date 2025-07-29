@@ -4,6 +4,16 @@ module Api
       def create?
         user.brand?
       end
+
+      def update?
+        user.brand? && record_related?
+      end
+
+      private
+
+      def record_related?
+        record.brand == user.brand
+      end
     end
   end
 end

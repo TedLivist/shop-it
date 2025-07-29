@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
     return unauthorized! if !payload || !AuthenticationTokenService.valid_payload?(payload.first)
 
     current_user!
-    unauthorized! unless @current_user
+    unauthorized! unless @current_user.active?
   end
 
   def current_user!
