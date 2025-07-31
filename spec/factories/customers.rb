@@ -17,6 +17,6 @@
 #
 FactoryBot.define do
   factory :customer do
-    user { nil }
+    user
   end
 end

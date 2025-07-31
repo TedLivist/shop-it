@@ -11,3 +11,7 @@ en:
           attributes:
             is_default:
               must_be_true: "Must be true or left vacant"
+        delivery_addresses/update:
+          attributes:
+            is_default:
+              must_be_true: "Must be true or left vacant"
