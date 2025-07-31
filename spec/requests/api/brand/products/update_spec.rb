@@ -25,7 +25,7 @@ RSpec.describe Api::Brand::ProductsController, type: :request do
     context 'When a customer tries to update a product' do
       it 'returns unauthorized error' do
         subject
-        expect(json['error']).to eq('Unauthorized')
+        expect(json['error']).to eq('That action is not authorized')
       end
     end
 
@@ -42,7 +42,7 @@ RSpec.describe Api::Brand::ProductsController, type: :request do
 
       it 'return unauthorized error' do
         subject
-        expect(json['error']).to eq('Unauthorized')
+        expect(json['error']).to eq('That action is not authorized')
       end
     end
 
