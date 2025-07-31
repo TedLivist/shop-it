@@ -22,5 +22,9 @@ Rails.application.routes.draw do
     end
 
     resources :products, only: [:index, :show]
+
+    namespace :customer do
+      resource :delivery_address, only: [:create]
+    end
   end
 end

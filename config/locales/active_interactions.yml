@@ -3,6 +3,11 @@ en:
     errors:
       models:
         users/auth/sign_in:
-            attributes:
-              user:
-                inactive: "Inactive %{attribute}. Verify OTP or contact admin for account activation"
+          attributes:
+            user:
+              inactive: "Inactive %{attribute}. Verify OTP or contact admin for account activation"
+
+        delivery_addresses/create:
+          attributes:
+            is_default:
+              must_be_true: "Must be true or left vacant"
