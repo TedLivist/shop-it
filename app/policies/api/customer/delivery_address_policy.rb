@@ -9,6 +9,10 @@ module Api
         user.customer? && record_related?
       end
 
+      def index?
+        user.customer?
+      end
+
       private
 
       def record_related?

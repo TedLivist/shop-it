@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Api::Customer::DeliveryAddressesController, type: :request do
-  describe 'POST #create' do
+  describe 'POST /api/customer/delivery_addresses' do
     let!(:user) { create(:user, :customer) }
     let!(:brand_user) { create(:user, :brand) }
 

@@ -36,6 +36,15 @@ module Api
         result = DeliveryAddresses::Update.run(payload)
         respond_with result, serializer: Api::DeliveryAddressSerializer
       end
+
+      api :GET, '/api/customer/delivery_addresses', "Fetch all customer's delivery addresses"
+      header :Authorization, 'Auth token', required: true
+
+      def index
+        authorize @current_user, policy_class: Customer::DeliveryAddressPolicy
+        result = @current_user.customer.delivery_addresses
+        respond_with result, each_serializer: Api::DeliveryAddressSerializer
+      end
     end
   end
 end

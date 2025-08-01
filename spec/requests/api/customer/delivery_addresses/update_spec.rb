@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Api::Customer::DeliveryAddressesController, type: :request do
-  describe 'PUT #update' do
+  describe 'PUT /api/customer/delivery_addresses/:id' do
     let!(:delivery_address) { create(:delivery_address) }
 
     let!(:params) do
@@ -18,7 +18,7 @@ RSpec.describe Api::Customer::DeliveryAddressesController, type: :request do
           params:
     end
 
-    context 'When a non-customer tried to update a delivery address' do
+    context 'When a non-customer tries to update a delivery address' do
       let!(:user) { create(:user, :brand) }
 
       it 'returns unauthorized action error' do
