@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Api::Customer::DeliveryAddressesController, type: :request do
-  describe 'POST #create' do
+  describe 'POST /api/customer/delivery_addresses' do
     let!(:user) { create(:user, :customer) }
     let!(:brand_user) { create(:user, :brand) }
 
@@ -18,7 +18,7 @@ RSpec.describe Api::Customer::DeliveryAddressesController, type: :request do
     end
 
     subject do
-      post '/api/customer/delivery_address',
+      post '/api/customer/delivery_addresses',
            headers: { Authorization: get_auth_token(user) },
            params:
     end
@@ -31,7 +31,7 @@ RSpec.describe Api::Customer::DeliveryAddressesController, type: :request do
 
     context 'Non-customer tries to create a delivery address' do
       subject do
-        post '/api/customer/delivery_address',
+        post '/api/customer/delivery_addresses',
              headers: { Authorization: get_auth_token(brand_user) },
              params:
       end
@@ -62,6 +62,25 @@ RSpec.describe Api::Customer::DeliveryAddressesController, type: :request do
       it 'returns is_default must be true or vacant error' do
         subject
         expect(json['errors']['is_default']).to eq(['Must be true or left vacant'])
+      end
+    end
+
+    context 'When it is the first delivery address and is_default is not part of the params' do
+      let!(:params) do
+        {
+          delivery_address: {
+            phone_number: Faker::PhoneNumber.phone_number,
+            description: Faker::Lorem.sentence,
+            first_name: Faker::Name.first_name,
+            last_name: Faker::Name.last_name
+          }
+        }
+      end
+
+      it 'sets the first delivery address as default' do
+        subject
+        expect(json['is_default']).to be(true)
+        expect(user.customer.delivery_addresses.first.is_default).to be(true)
       end
     end
   end

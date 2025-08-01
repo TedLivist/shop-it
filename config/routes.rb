@@ -24,7 +24,7 @@ Rails.application.routes.draw do
     resources :products, only: [:index, :show]
 
     namespace :customer do
-      resource :delivery_address, only: [:create]
+      resources :delivery_addresses, only: [:create, :update, :index]
     end
   end
 end

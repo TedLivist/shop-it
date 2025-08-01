@@ -12,7 +12,9 @@ module DeliveryAddresses
           errors.add(:is_default, :must_be_true)
           throw(:abort)
         elsif inputs[:is_default] == true
-          customer.delivery_addresses.where(is_default: true).update_all(is_default: false)
+          query = customer.delivery_addresses.where(is_default: true)
+          query = query.where.not(id: delivery_address.id) if delivery_address&.id.present?
+          query.update_all(is_default: false)
         end
       end
     end

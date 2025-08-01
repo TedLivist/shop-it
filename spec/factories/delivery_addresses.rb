@@ -22,11 +22,11 @@
 #
 FactoryBot.define do
   factory :delivery_address do
-    phone_number { 'MyString' }
-    description { 'MyText' }
-    first_name { 'MyString' }
-    last_name { 'MyString' }
+    phone_number { Faker::PhoneNumber.phone_number }
+    description { Faker::Lorem.sentence }
+    first_name { Faker::Name.first_name }
+    last_name { Faker::Name.last_name }
     is_default { false }
-    customer { nil }
+    customer
   end
 end
