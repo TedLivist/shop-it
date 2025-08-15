@@ -4,6 +4,7 @@
 #
 #  id         :bigint           not null, primary key
 #  quantity   :integer
+#  status     :integer
 #  unit_price :decimal(, )
 #  created_at :datetime         not null
 #  updated_at :datetime         not null

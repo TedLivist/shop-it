@@ -25,6 +25,7 @@ Rails.application.routes.draw do
 
     namespace :customer do
       resources :delivery_addresses, only: [:create, :update, :index]
+      resources :orders, only: [:create]
     end
   end
 end
