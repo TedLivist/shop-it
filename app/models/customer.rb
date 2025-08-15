@@ -18,4 +18,5 @@
 class Customer < ApplicationRecord
   belongs_to :user
   has_many :delivery_addresses
+  has_many :orders
 end

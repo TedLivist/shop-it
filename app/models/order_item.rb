@@ -4,6 +4,7 @@
 #
 #  id         :bigint           not null, primary key
 #  quantity   :integer
+#  status     :integer
 #  unit_price :decimal(, )
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
@@ -23,4 +24,9 @@
 class OrderItem < ApplicationRecord
   belongs_to :order
   belongs_to :product
+
+  enum :status, {
+    unprocessed: 0,
+    processed: 1
+  }
 end

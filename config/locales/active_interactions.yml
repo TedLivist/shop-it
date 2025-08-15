@@ -15,3 +15,8 @@ en:
           attributes:
             is_default:
               must_be_true: "Must be true or left vacant"
+
+        orders/create:
+          attributes:
+            stock:
+              not_enough: "%{attribute} of %{product_name} is not enough for that quantity"

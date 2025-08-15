@@ -6,7 +6,7 @@
 #  delivery_address        :text
 #  delivery_phone_number   :string
 #  delivery_recipient_name :string
-#  status                  :integer
+#  status                  :string
 #  total_price             :decimal(, )
 #  created_at              :datetime         not null
 #  updated_at              :datetime         not null
