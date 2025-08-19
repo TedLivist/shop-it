@@ -26,7 +26,10 @@ class OrderItem < ApplicationRecord
   belongs_to :product
 
   enum :status, {
-    unprocessed: 0,
-    processed: 1
+    pending: 0,
+    processing: 1,
+    shipped: 2,
+    delivered: 3,
+    cancelled: 4
   }
 end

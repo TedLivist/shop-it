@@ -51,6 +51,15 @@ RSpec.describe Api::Customer::OrdersController, type: :request do
         ]
         expect(updated_stocks).to eq([1, 0, 1])
       end
+
+      it 'sets the order and order items to pending statuses' do
+        subject
+        order = Order.first
+        order_status = order.status
+        items_statuses = order.order_items.pluck(:status)
+        expect(order_status).to eq('pending')
+        expect(items_statuses.all?('pending')).to be(true)
+      end
     end
 
     context 'When non-customer tries to create an order' do

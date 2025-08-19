@@ -32,7 +32,9 @@ class Order < ApplicationRecord
   aasm column: :status do
     state :pending, initial: true
     state :processing
+    state :partly_shipped
     state :shipped
+    state :partly_delivered
     state :delivered
     state :cancelled
 
@@ -40,12 +42,20 @@ class Order < ApplicationRecord
       transitions from: :pending, to: :processing
     end
 
+    event :partly_ship do
+      transitions from: :processing, to: :partly_shipped
+    end
+
     event :ship do
-      transitions from: :processing, to: :shipped
+      transitions from: [:processing, :partly_shipped], to: :shipped
+    end
+
+    event :partly_deliver do
+      transitions from: [:partly_shipped, :shipped], to: :partly_delivered
     end
 
     event :deliver do
-      transitions from: :shipped, to: :delivered
+      transitions from: [:shipped, :partly_delivered], to: :delivered
     end
 
     event :cancel do
