@@ -57,7 +57,7 @@ module Orders
 
       order_items.map do |order_item|
         product = products[order_item[:product_id]]
-        order_item.merge!(unit_price: product.price, status: 'unprocessed')
+        order_item.merge!(unit_price: product.price, status: 'pending')
         items.push(order_item)
       end
 
