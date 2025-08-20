@@ -19,7 +19,7 @@ Rails.application.routes.draw do
 
     namespace :brand do
       resources :products, only: [:create, :update, :destroy]
-      resources :order_items, only: [:index]
+      resources :order_items, only: [:index, :update]
     end
 
     resources :products, only: [:index, :show]

@@ -62,4 +62,22 @@ class Order < ApplicationRecord
       transitions from: [:pending, :processing, :shipped], to: :cancelled
     end
   end
+
+  def update_order_status!
+    order_items_statuses = order_items.pluck(:status)
+
+    if order_items_statuses.all?('cancelled')
+      cancel! if may_cancel?
+    elsif order_items_statuses.all?('delivered')
+      deliver! if may_deliver?
+    elsif order_items_statuses.any?('delivered')
+      partly_deliver! if may_partly_deliver?
+    elsif order_items_statuses.all?('shipped')
+      ship! if may_ship?
+    elsif order_items_statuses.any?('shipped')
+      partly_ship! if may_partly_ship?
+    elsif order_items_statuses.any?('processing')
+      process! if may_process?
+    end
+  end
 end
