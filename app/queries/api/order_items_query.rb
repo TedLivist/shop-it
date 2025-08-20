@@ -8,7 +8,7 @@ module Api
       scope = brand.order_items
       scope = scope.where(status:) if status.present?
       scope = scope.where(product_id:) if product_id.present?
-       
+
       scope
     end
   end

@@ -26,7 +26,7 @@ FactoryBot.define do
     status { 'pending' }
     delivery_address { Faker::Lorem.sentence }
     delivery_phone_number { Faker::PhoneNumber.phone_number }
-    delivery_recipient_name { Faker::Name.first_name + ' ' + Faker::Name.last_name }
+    delivery_recipient_name { "#{Faker::Name.first_name} #{Faker::Name.last_name}" }
     customer
   end
 end
