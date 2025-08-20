@@ -22,11 +22,11 @@
 #
 FactoryBot.define do
   factory :order do
-    total_price { '9.99' }
-    status { 1 }
-    delivery_address { 'MyText' }
-    delivery_phone_number { 'MyString' }
-    delivery_recipient_name { 'MyString' }
-    customer { nil }
+    total_price { 9.99 }
+    status { 'pending' }
+    delivery_address { Faker::Lorem.sentence }
+    delivery_phone_number { Faker::PhoneNumber.phone_number }
+    delivery_recipient_name { Faker::Name.first_name + ' ' + Faker::Name.last_name }
+    customer
   end
 end
