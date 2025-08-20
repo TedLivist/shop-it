@@ -6,17 +6,11 @@ module Api
       end
 
       def update?
-        user.brand? && record_related?
+        user.brand? && brand_record_related?
       end
 
       def destroy?
-        user.brand? && record_related?
-      end
-
-      private
-
-      def record_related?
-        record.brand == user.brand
+        user.brand? && brand_record_related?
       end
     end
   end

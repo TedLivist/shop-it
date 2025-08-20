@@ -25,6 +25,8 @@ class OrderItem < ApplicationRecord
   belongs_to :order
   belongs_to :product
 
+  after_commit :sync_order_status
+
   enum :status, {
     pending: 0,
     processing: 1,
@@ -32,4 +34,10 @@ class OrderItem < ApplicationRecord
     delivered: 3,
     cancelled: 4
   }
+
+  private
+
+  def sync_order_status
+    order.update_order_status!
+  end
 end

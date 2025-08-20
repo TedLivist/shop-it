@@ -25,6 +25,7 @@ FactoryBot.define do
   factory :order_item do
     quantity { 1 }
     unit_price { 9.99 }
+    status { 0 }
     order
     product
   end
