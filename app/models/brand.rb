@@ -21,4 +21,15 @@ class Brand < ApplicationRecord
   belongs_to :user
   has_many :products
   has_many :order_items, through: :products
+
+  def top_products_by_quantity(limit = 5)
+    products.joins(:order_items)
+            .group('products.id')
+            .order('SUM(order_items.quantity) DESC')
+            .limit(limit)
+  end
+
+  def total_sales
+    order_items.sum('order_items.quantity * order_items.unit_price')
+  end
 end
