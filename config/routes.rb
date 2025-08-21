@@ -20,6 +20,13 @@ Rails.application.routes.draw do
     namespace :brand do
       resources :products, only: [:create, :update, :destroy]
       resources :order_items, only: [:index, :update]
+
+      resources :metrics, only: [] do
+        collection do
+          get :sales_summary
+          get :top_products
+        end
+      end
     end
 
     resources :products, only: [:index, :show]
