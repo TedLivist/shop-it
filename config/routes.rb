@@ -30,6 +30,7 @@ Rails.application.routes.draw do
     end
 
     resources :products, only: [:index, :show]
+    resources :categories, only: [:index]
 
     namespace :customer do
       resources :delivery_addresses, only: [:create, :update, :index]
