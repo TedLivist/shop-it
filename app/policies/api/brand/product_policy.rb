@@ -12,6 +12,10 @@ module Api
       def destroy?
         user.brand? && brand_record_related?
       end
+
+      def index?
+        user.brand?
+      end
     end
   end
 end
