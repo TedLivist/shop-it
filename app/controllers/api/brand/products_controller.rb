@@ -50,6 +50,16 @@ module Api
         product.destroy!
         render json: { product: 'deleted' }
       end
+
+      api :GET, '/api/brand/products', "Fetch all brand's products"
+      header :Authorization, 'Auth token', required: true
+      param :status, Product.statuses.keys, 'Product status', required: true
+
+      def index
+        authorize @current_user, policy_class: Brand::ProductPolicy
+        products = Api::Brand::ProductsQuery.call(params.merge(brand: @current_user.brand))
+        respond_with products
+      end
     end
   end
 end
