@@ -10,7 +10,7 @@ module Api
           id: object.product.id,
           name: object.product.name,
           image_url: object.product.image_url,
-          brand_id: object.product.id
+          brand_id: object.product.brand.id
         }
       end
 
