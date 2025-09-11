@@ -21,7 +21,8 @@ module Api
           id: object.order.id,
           delivery_address: object.order.delivery_address,
           delivery_phone_number: object.order.delivery_phone_number,
-          delivery_recipient_name: object.order.delivery_recipient_name
+          delivery_recipient_name: object.order.delivery_recipient_name,
+          customer_id: object.order.customer.id
         }
       end
     end
