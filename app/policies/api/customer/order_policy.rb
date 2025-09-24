@@ -4,6 +4,10 @@ module Api
       def create?
         user.customer?
       end
+
+      def index?
+        user.customer?
+      end
     end
   end
 end
