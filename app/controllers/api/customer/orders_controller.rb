@@ -17,6 +17,16 @@ module Api
         result = Orders::Create.run(payload)
         respond_with result, serializer: Api::OrderSerializer
       end
+
+      api :GET, '/api/customer/orders', 'Get list of customer orders'
+      header :Authorization, 'Auth token', required: true
+
+      def index
+        authorize @current_user, policy_class: Customer::OrderPolicy
+        customer = @current_user.customer
+        result = customer.orders
+        respond_with result
+      end
     end
   end
 end

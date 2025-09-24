@@ -34,7 +34,7 @@ Rails.application.routes.draw do
 
     namespace :customer do
       resources :delivery_addresses, only: [:create, :update, :index]
-      resources :orders, only: [:create]
+      resources :orders, only: [:create, :index]
     end
   end
 end
