@@ -49,5 +49,9 @@ FactoryBot.define do
         create(:brand, user: user)
       end
     end
+
+    trait :super_admin do
+      association :user_role, factory: :user_role, name: 'super_admin'
+    end
   end
 end

@@ -36,5 +36,13 @@ Rails.application.routes.draw do
       resources :delivery_addresses, only: [:create, :update, :index]
       resources :orders, only: [:create, :index]
     end
+
+    namespace :admin do
+      resources :users, only: [] do
+        collection do
+          get :filtered
+        end
+      end
+    end
   end
 end
