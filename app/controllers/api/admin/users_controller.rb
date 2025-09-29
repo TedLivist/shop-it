@@ -16,6 +16,17 @@ module Api
         users = Api::Admin::UsersQuery.call(params)
         respond_with users
       end
+
+      api :PUT, '/api/admin/users/:id', "Update user's record"
+      header :Authorization, 'Auth token', required: true
+      param :status, ::User.aasm.events, 'User status event', required: true
+
+      def update
+        authorize @current_user, policy_class: Admin::UsersPolicy
+        payload = params.permit(:status, :id)
+        result = ::Admin::Users::Update.run(payload)
+        respond_with result
+      end
     end
   end
 end

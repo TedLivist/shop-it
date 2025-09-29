@@ -38,7 +38,7 @@ Rails.application.routes.draw do
     end
 
     namespace :admin do
-      resources :users, only: [] do
+      resources :users, only: [:update] do
         collection do
           get :filtered
         end
