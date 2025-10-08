@@ -31,8 +31,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   belongs_to :user_role
-  has_one :customer
-  has_one :brand
+  has_one :customer, dependent: :destroy
+  has_one :brand, dependent: :destroy
 
   validates :first_name, :last_name, length: { minimum: 2, maximum: 24 }
 
