@@ -1,7 +1,7 @@
 module Api
   module User
     class AuthSerializer < ApplicationSerializer
-      attributes :id, :email, :full_name, :status, :brand_id, :customer_id, :user_role, :token
+      attributes :id, :email, :full_name, :status, :brand_id, :customer_id, :is_admin, :user_role, :token
 
       delegate :full_name, to: :object
 
@@ -15,6 +15,10 @@ module Api
         return unless object.customer?
 
         object.customer&.id
+      end
+
+      def is_admin
+        object.super_admin?
       end
 
       def user_role
