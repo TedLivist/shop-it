@@ -82,7 +82,7 @@ test:
 # for a full overview on how database connection configuration can be specified.
 #
 production:
-  <<: *default
+  # <<: *default
   url: <%= ENV['DATABASE_URL'] %>
   # database: shop_it_production
   # username: shop_it
